@@ -31,10 +31,10 @@
   args:
       chdir: /app
 
-- name: "copying {{componenet}} services"
+- name: copying {{componenet}} services
   ansible.builtin.copy:
     src: "{{componenet}}.service"
-    dest: "/etc/systemd/system/{{componenet}}.service"
+    dest: /etc/systemd/system/{{componenet}}.service
 
 - name: start and enable mongodb
   ansible.builtin.service:
