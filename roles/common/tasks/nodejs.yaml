@@ -40,10 +40,11 @@
   ansible.builtin.service:
     daemon-reload: true
 
-
-- name: start and enable catalogue
+- name: start and enable {{component}}
   ansible.builtin.service:
     name: "{{component}}"
     state: restarted
     enabled: yes
+
+
   
