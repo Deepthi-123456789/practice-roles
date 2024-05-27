@@ -1,0 +1,48 @@
+- name: disabling old version of nodejs
+  ansible.builtin.command: dnf module disable nodejs -y; dnf module enable nodejs:18 -y
+
+- name: installing nodejs
+  ansible.builtin.package:
+    name: nodejs
+    state: present
+
+- name: adding the user
+  ansible.builtin.user:
+    - name: roboshop
+
+- name: creating a directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: downloading the application
+  ansible.builtin.get_url:
+    path: "https://roboshop-builds.s3.amazonaws.com/{{componenet}}.zip"
+    dest: /tmp
+
+- name: extracting the files
+  ansible.builtin.unarchive:
+    src: "/tmp/{{componenet}}.zip"
+    dest: /app
+    remote_src: yes
+
+- name: changing the dir and npm install
+  ansible.builtin.commana: npm install
+  args:
+      chdir: /app
+
+- name: "copying {{componenet}} services"
+  ansible.builtin.copy:
+    src: "{{componenet}}.service"
+    dest: "/etc/systemd/system/{{componenet}}.service"
+
+- name: start and enable mongodb
+  ansible.builtin.service:
+    daemon-reload: true
+
+- name: start and enable catalogue
+  ansible.builtin.service:
+    name: catalogue
+    state: restarted
+    enabled: yes
+  
