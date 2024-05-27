@@ -10,7 +10,7 @@
 
 - name: installing redis 
   ansible.builtin.package:
-    name: "{{component}}""
+    name: "{{component}}"
     state: present
 
 - name: replacing redis conf
