@@ -1,5 +1,5 @@
 - name: disabling old version of nodejs
-  ansible.builtin.command: dnf module disable nodejs -y; dnf module enable nodejs:18 -y
+  ansible.builtin.shell: dnf module disable nodejs -y; dnf module enable nodejs:18 -y
 
 - name: installing nodejs
   ansible.builtin.package:
