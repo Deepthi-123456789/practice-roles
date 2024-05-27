@@ -8,7 +8,7 @@
 
 - name: adding the user
   ansible.builtin.user:
-    - name: roboshop
+    name: roboshop
 
 - name: creating a directory
   ansible.builtin.file:
