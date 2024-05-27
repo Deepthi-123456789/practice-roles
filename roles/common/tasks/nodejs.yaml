@@ -15,14 +15,14 @@
     path: /app
     state: directory
 
-- name: downloading the application
+- name: download {{component}} application
   ansible.builtin.get_url:
-    path: "https://roboshop-builds.s3.amazonaws.com/{{componenet}}.zip"
+    url: https://roboshop-builds.s3.amazonaws.com/{{component}}.zip
     dest: /tmp
 
-- name: extracting the files
+- name: unzipping the file
   ansible.builtin.unarchive:
-    src: "/tmp/{{componenet}}.zip"
+    src: /tmp/{{component}}.zip
     dest: /app
     remote_src: yes
 
