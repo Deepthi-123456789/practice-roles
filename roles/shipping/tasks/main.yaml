@@ -18,5 +18,8 @@
     name: common
     tasks_from: mysql
 
-
+- name: restsrting
+  ansible.builtin.service:
+    name: shipping
+    state: restarted
 
