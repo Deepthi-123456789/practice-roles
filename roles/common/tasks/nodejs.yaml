@@ -32,8 +32,8 @@
       chdir: /app
 
 - name: copy {{component}} services
-  ansible.builtin.copy:
-    src: "{{component}}.service" 
+  ansible.builtin.template:
+    src: "{{component}}.service.j2" 
     dest: "/etc/systemd/system/{{component}}.service"
 
 - name: deamon realod and start
