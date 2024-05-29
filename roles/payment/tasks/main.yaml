@@ -1,0 +1,14 @@
+ name: systemd
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd
+
+- name: python
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: python
+
+- name: copy
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: copy
