@@ -6,5 +6,21 @@
 - name: app setup
   ansible.builtin.import_roles:
     name: common
-    tasks_from: app set_
+    tasks_from: app set_up
+
+- name: copy
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: copy
+
+- name: mysql
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: mysql
+
+- name: systemd
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd
+
 
